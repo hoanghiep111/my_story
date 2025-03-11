@@ -23,8 +23,14 @@ public class CategoryService {
 
 
     private String generateCategoryCode() {
+        //Lấy mã lớn nhất hiện có trong DB" rồi +1 để tạo mã mới.
         String lastCode = categoryRepository.findMaxCategoryCode();
-        int nextNumber = (lastCode != null) ? Integer.parseInt(lastCode) + 1 : 1;
+        int nextNumber;
+        if (lastCode == null) {
+            nextNumber = 1;
+        } else {
+            nextNumber = Integer.parseInt(lastCode) + 1;
+        }
         return String.format("%04d", nextNumber);
     }
 
