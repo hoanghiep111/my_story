@@ -72,8 +72,8 @@ public class ProductService {
     }
 
     private String generateProductCode(Category category) {
-        String categoryCode = category.getCategoryCode(); // Giả sử Category có trường `code`
-        Long count = productRepository.countByCategory(category); // Đếm số lượng sản phẩm trong category
+        String categoryCode = category.getCategoryCode();
+        Long count = productRepository.countByCategory(category);
 
         String formattedNumber = String.format("%06d", count + 1);
         return categoryCode + "_" + formattedNumber;
