@@ -1,48 +1,16 @@
-package com.shop.my.entity;
+package com.shop.my.dto.request.product;
 
-import jakarta.persistence.*;
-
-
-import java.security.Timestamp;
 import java.time.LocalDateTime;
 
-
-@Entity
-public class Product {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String productCode;
+public class ProductUpdateRequest {
     private String name;
     private String description;
     private double price;
     private int stockQuantity;
     private String imageUrl;
-
-    @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
-
+    private Long categoryId;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getProductCode() {
-        return productCode;
-    }
-
-    public void setProductCode(String productCode) {
-        this.productCode = productCode;
-    }
 
     public String getName() {
         return name;
@@ -84,12 +52,12 @@ public class Product {
         this.imageUrl = imageUrl;
     }
 
-    public Category getCategory() {
-        return category;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
     public LocalDateTime getCreatedAt() {

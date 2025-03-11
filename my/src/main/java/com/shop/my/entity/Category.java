@@ -1,29 +1,30 @@
 package com.shop.my.entity;
 
+import com.shop.my.enums.CategoryStatus;
 import jakarta.persistence.*;
-
 
 import java.security.Timestamp;
 import java.time.LocalDateTime;
-
+import java.util.Date;
+import java.util.List;
 
 @Entity
-public class Product {
+
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String productCode;
+    @Column(unique = true, length = 4)  // Mã không trùng
+    private String categoryCode;
+
     private String name;
     private String description;
-    private double price;
-    private int stockQuantity;
-    private String imageUrl;
+    private CategoryStatus status;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    private List<Product> products;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
@@ -36,12 +37,12 @@ public class Product {
         this.id = id;
     }
 
-    public String getProductCode() {
-        return productCode;
+    public String getCategoryCode() {
+        return categoryCode;
     }
 
-    public void setProductCode(String productCode) {
-        this.productCode = productCode;
+    public void setCategoryCode(String categoryCode) {
+        this.categoryCode = categoryCode;
     }
 
     public String getName() {
@@ -60,37 +61,14 @@ public class Product {
         this.description = description;
     }
 
-    public double getPrice() {
-        return price;
+    public CategoryStatus getStatus() {
+        return status;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setStatus(CategoryStatus status) {
+        this.status = status;
     }
 
-    public int getStockQuantity() {
-        return stockQuantity;
-    }
-
-    public void setStockQuantity(int stockQuantity) {
-        this.stockQuantity = stockQuantity;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
 
     public LocalDateTime getCreatedAt() {
         return createdAt;

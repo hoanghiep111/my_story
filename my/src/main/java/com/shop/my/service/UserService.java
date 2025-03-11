@@ -1,7 +1,7 @@
 package com.shop.my.service;
 
-import com.shop.my.dto.request.UserCreateRequest;
-import com.shop.my.dto.request.UserUpdateRequest;
+import com.shop.my.dto.request.user.UserCreateRequest;
+import com.shop.my.dto.request.user.UserUpdateRequest;
 import com.shop.my.entity.User;
 import com.shop.my.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,15 +15,17 @@ public class UserService {
     @Autowired
     private  UserRepository userRepository;
 
-    public User createUser(UserCreateRequest request){ // request những thông tin ần thiết tạo ra table user
-        // tạo usser mơi
+    public User createUser(UserCreateRequest request){ // request những thông tin cần thiết tạo ra table user
 
-        // khai báo user
         User user = new User();
-
         // map dữ liệu vào user
         user.setUsername(request.getUsername());
+        user.setEmail(request.getEmail());
         user.setPassword(request.getPassword());
+        user.setPhoneNumber(request.getPhoneNumber());
+        user.setGender(request.getGender());
+        user.setDateOfBirth(request.getDateOfBirth());
+        user.setAddress(request.getAddress());
         user.setRole(request.getRole());
 
         // gọi tới UserRepository
@@ -34,8 +36,14 @@ public class UserService {
     public User updateUser(Long userId, UserUpdateRequest request){
         User user = getUser(userId);
         user.setUsername(request.getUsername());
+        user.setEmail(request.getEmail());
         user.setPassword(request.getPassword());
+        user.setPhoneNumber(request.getPhoneNumber());
+        user.setGender(request.getGender());
+        user.setDateOfBirth(request.getDateOfBirth());
+        user.setAddress(request.getAddress());
         user.setRole(request.getRole());
+
         return userRepository.save(user);
     }
 
@@ -43,8 +51,8 @@ public class UserService {
         userRepository.deleteById(userId);
     }
 
-    public List<User> getUsers(){
-        return userRepository.findAll();  // get tất cả user
+    public List<User> getUsers() {
+        return userRepository.findAll();  // get all user
     }
 
     public User getUser(Long id){

@@ -1,7 +1,7 @@
 package com.shop.my.controller;
 
-import com.shop.my.dto.request.UserCreateRequest;
-import com.shop.my.dto.request.UserUpdateRequest;
+import com.shop.my.dto.request.user.UserCreateRequest;
+import com.shop.my.dto.request.user.UserUpdateRequest;
 import com.shop.my.entity.User;
 import com.shop.my.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,20 +1,10 @@
-package com.shop.my.entity;
+package com.shop.my.dto.request.user;
 
 import com.shop.my.enums.GenderUser;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 
 import java.time.LocalDate;
 
-
-@Entity
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class UserCreateRequest {
     private String username;
     private String email;
     private String password;
@@ -23,14 +13,6 @@ public class User {
     private LocalDate dateOfBirth;
     private String address;
     private String role;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;
